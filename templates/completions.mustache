@@ -1,0 +1,54 @@
+<div class="container" style="">
+    <div class="row flex-row" style="border: 1px solid #27B049; border-radius: 0.75rem; overflow: hidden;">
+        {{#sections}}
+            <div
+                    class="progress-block {{celloptions.classes}}  flex-grow-1" data-info-ref="section-bar-info-{{user.id}}-{{num}}"
+                    data-user="{{user.id}}" style="height: 1.3rem; {{celloptions.style}}; cursor: pointer; {{#first}}border-left: none;{{/first}}
+                {{^first}}border-left: 1px solid #27B049;{{/first}}">
+
+            </div>
+        {{/sections}}
+    </div>
+
+    <div class="row flex-row mt-2">
+        <div class="progress-info" data-user="{{user.id}}" style="font-size: x-small">
+            {{#str}}hoverhint, block_occompletionprogress{{/str}}
+        </div>
+        {{#sections}}
+            <div class="d-none progress-info w-100" id="section-bar-info-{{user.id}}-{{num}}" data-user="{{user.id}}">
+                <a class="" href="{{url}}">
+                    {{#showpercentage}}{{percentage}}% {{/showpercentage}}{{name}}
+                </a>
+                {{#hasactivities}}
+                    <div class="mt-2">
+                        <ul class="list-group">
+                            {{#activities}}
+                                <a href="{{url}}" class="text-decoration-none {{classes}} flex-grow-1">
+                                    <li class="list-group-item container" style="font-size: 0.75rem; padding: 0.5rem 1rem;">
+                                        <div class="row">
+                                            <div class="col-sm-10 text-primary" style="white-space: nowrap;">
+                                                <img src="{{icon}}" class="" alt="" style="width: 15px; height: 15px;"/>
+                                                <span class="ml-1"
+                                                      {{#tooltip}}
+                                                      data-toggle="tooltip" data-placement="bottom" title="{{name}}"
+                                                      {{/tooltip}}>
+                                                    {{displayname}}
+                                                </span>
+                                            </div>
+                                            <div class="col-sm-1 text-right text-dark text-decoration-none">
+                                                {{{completeicon}}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                            {{/activities}}
+                        </ul>
+                    </div>
+                {{/hasactivities}}
+                {{^hasactivities}}
+                    <br><span style="font-size: x-small;">{{#str}}nocompletions, block_occompletionprogress{{/str}}</span>
+                {{/hasactivities}}
+            </div>
+        {{/sections}}
+    </div>
+</div>
